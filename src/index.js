@@ -1,14 +1,22 @@
 const express = require('express');
-const { PORT } = require('./config/Server-Config');
+const bodyParser = require('body-parser');
+
+const {PORT} = require('./config/Server-Config');
+const apiRoutes = require('./routes/index');
 
 // app is created 
 const app = express();
 
 
 const StartServer = ()=> {
+
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({ extended: true}));
+
+	app.use('/api', apiRoutes);
 	
-	app.listen(process.env.PORT, ()=> {
-		console.log('Server is started on :process.env.PORT')
+	app.listen(PORT, ()=> {
+		console.log('Server is started on :',PORT);
 	})
 }
 
