@@ -19,7 +19,7 @@ class UserService {
 
 	createToken(user) {
 		try {
-			const result = jwt.sign( user, )
+			const result = jwt.sign( user, JWT_KEY)
 		} catch (error) {
 			console.log("something went in token creation");
 			throw { error }
