@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
 
+  //trigger to encrypt the password before inserted into database
   User.beforeCreate((user)=>{
     const encryptedPassword = bcrypt.hashSync(user.password, SALT);
     user.password = encryptedPassword;
