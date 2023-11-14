@@ -4,7 +4,6 @@ class UserRepository {
 
 	async create(data) {
 		try {
-			console.log("repository");
 			const user = await User.create(data);
 			return user;
 		} catch (error) {
@@ -23,9 +22,25 @@ class UserRepository {
 		}
 	}
 
-	async get(userId) {
+	async getById(userId) {
 		try {
-			const user = await User.findByPk(userId);
+			const user = await User.findByPk(userId, {
+				attributes: ['id', 'email']
+			});
+			return user;
+		} catch (error) {
+			console.log("Something went wrong in repository layer")
+			throw {error}
+		}
+	}
+
+	async getUserByEmail(userEmail) {
+		try {
+			const user = await User.findOne({
+				where: {
+					email: userEmail
+				}
+			});
 			return user;
 		} catch (error) {
 			console.log("Something went wrong in repository layer")
