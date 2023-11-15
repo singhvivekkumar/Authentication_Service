@@ -1,11 +1,31 @@
 const express = require('express');
 const UserController = require('../../controllers/user-controller');
-const UserMiddleware = require('../../middlewares/index');
+const { AuthRequestValidtor } = require('../../middlewares/index');
+const RoleController = require('../../controllers/role-controller');
 
 const router = express.Router();
 
-router.post('/signup',UserMiddleware.AuthRequestValidtor, UserController.create);
-router.post('/signin',UserMiddleware.AuthRequestValidtor, UserController.signIn);
-router.get('/isauthenticated', UserController.isAuthenticated);
+router.post(
+	'/signup',
+	AuthRequestValidtor.validateEmailPassword, 
+	UserController.create
+);
+
+router.post(
+	'/signin',
+	AuthRequestValidtor.validateEmailPassword, 
+	UserController.signIn
+);
+
+router.get(
+	'/isauthenticated', 
+	UserController.isAuthenticated
+);
+
+router.get(
+	'/isadmin', 
+	AuthRequestValidtor.validateIsAdminRequest,
+	RoleController.isAdmin
+);
 
 module.exports = router;
