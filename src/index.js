@@ -14,6 +14,13 @@ const StartServer = ()=> {
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true}));
 
+	app.get('/auth/home', (req, res)=> {
+		console.log(req.body);
+		return res.status(200).json({
+			message: "everything is good"
+		})
+	});
+	app.use('/auth/api', apiRoutes);
 	app.use('/api', apiRoutes);
 	
 	app.listen(PORT, async ()=> {

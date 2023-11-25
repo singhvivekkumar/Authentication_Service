@@ -1,6 +1,5 @@
 const RoleRespository = require("../repository/Role-repository");
 
-
 class RoleService {
 
 	constructor() {

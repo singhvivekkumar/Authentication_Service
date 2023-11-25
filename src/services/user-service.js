@@ -35,7 +35,7 @@ class UserService {
 			const response = jwt.verify(token, JWT_KEY);
 			return response;
 		} catch (error) {
-			console.log("something went wrong in token validation",error);
+			console.log("something went wrong in token validation");
 			throw { error }
 		}
 	}
@@ -46,7 +46,7 @@ class UserService {
 			const response = bycrpt.compareSync(intputPlainpassword, encryptedPassword);
 			return response;
 		} catch (error) {
-			console.log("something went wrong in passwrod comparision",error);
+			console.log("something went wrong in passwrod comparision");
 			throw { error }
 		}
 	}
