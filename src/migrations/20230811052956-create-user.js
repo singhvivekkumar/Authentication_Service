@@ -17,6 +17,11 @@ module.exports = {
           isEmail: true
         }
       },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: "Vivek"
+      },
       password: {
         type: Sequelize.STRING,
         allowNull: false,

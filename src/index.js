@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 const {PORT} = require('./config/Server-Config');
 const apiRoutes = require('./routes/index');
-const { User, Role} = require('./models/index');
+const db = require('./models/index');
 
 // app is created 
 const app = express();
