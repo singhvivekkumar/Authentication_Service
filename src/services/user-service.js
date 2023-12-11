@@ -8,10 +8,17 @@ class UserService {
 		this.userRepository = new UserRepository();
 	}
  
-	async createUser(data) {
+	async createUser(user) {
 		try {
-			const user = await this.userRepository.create(data);
-			return user;
+			const user = await this.userRepository.create(user);
+			const newJWT = this.createToken({email: user.email, password: user.password});
+			return {
+				token: newJWT,
+				user: {
+					email: user.email,
+					name: user.name
+				}
+			};
 		} catch (error) {
 			console.log("Something went wrong in service layer")
 			throw {error};
@@ -60,7 +67,14 @@ class UserService {
 			// step-2 password correct generate token
 			if (comparePassword) {
 				const newJWT = this.createToken({email: user.email, password: user.password});
-				return newJWT;
+				return {
+					token: newJWT,
+					user: {
+						id: user.id,
+						email: user.email,
+						name: user.name
+					}
+				};
 			} else {
 				console.log("please check password");
 				throw {error: "incorrect password"}
@@ -85,12 +99,10 @@ class UserService {
 			}
 			return user.id;
 		} catch (error) {
-			console.log("something went wrong with authentication of user or validation of token");
+			console.log("something went wrong with authentication of while validation of token");
 			throw { error }
 		}
-	}
-
-	
+	}	
 }
 
 module.exports = UserService;

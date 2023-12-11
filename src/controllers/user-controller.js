@@ -6,9 +6,9 @@ const create = async (req, res) => {
 	try {
 		const requestData = {
 			email: req.body.email,
-			password: req.body.password
+			password: req.body.password,
+			name: req.body.name
 		}
-		console.log(requestData.email);
 		const user = await userService.createUser(requestData);
 		return res.status(201).json({
 			data: user,
