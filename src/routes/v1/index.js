@@ -28,4 +28,9 @@ router.get(
 	RoleController.isAdmin
 );
 
+router.get(
+	'/details',
+	UserController.getUser
+);
+
 module.exports = router;

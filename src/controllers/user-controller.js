@@ -68,8 +68,29 @@ const isAuthenticated = async (req, res) => {
 	}
 }
 
+const getUser = async (req, res) => {
+	try {
+		const user = await userService.getUserById(req.query.id);
+		return res.status(200).json({
+			data: user,
+			success: true,
+			message: "User details getting by userID",
+			err: {},
+		})
+	} catch(error) {
+		console.log(error);
+		return res.status(500).json({
+			data: {},
+			success: false,
+			message: "something went wrong while getting user details",
+			err: error
+		})
+	}
+}
+
 module.exports = {
 	create,
 	signIn,
+	getUser,
 	isAuthenticated
 }
