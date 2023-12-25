@@ -10,18 +10,18 @@ class UserService {
  
 	async createUser(user) {
 		try {
-			const user = await this.userRepository.create(user);
+			const result = await this.userRepository.create(user);
 			const newJWT = this.createToken({email: user.email, password: user.password});
 			return {
 				token: newJWT,
 				user: {
-					id: user.id,
-					email: user.email,
-					name: user.name
+					id: result.id,
+					email: result.email,
+					name: result.name
 				}
 			};
 		} catch (error) {
-			console.log("Something went wrong in service layer")
+			console.log("Something went wrong createUser() in service layer")
 			throw {error};
 		}
 	}
