@@ -1,60 +1,63 @@
 # Authentication Service
-- Identify every user
+
+-   Identify every user
 
 ## JWT authenticaion service
-	- 
 
+    -
 
 ### Setup database or sequelize orm
-	-Install or and setup the mysql db connection by configuration of config file
-	```npn i sequelize```
 
-	-In config.js file
-	```
-		"username": "root",
-    	"password": "<password>",
-    	"database": "<database_name>",
-	```
+    -Install or and setup the mysql db connection by configuration of config file
+    ```npn i sequelize```
 
-	-Create migration and model files for database by running ORM command
-	`npx sequelize model:generate --name <table_name> --attributes emails:string,password:string`
+    -In config.js file
+    ```
+    	"username": "<user_name>",
+    "password": "<password>",
+    "database": "<database_name>",
+    ```
 
-	-Now migrate the and sync with database by this command 
-	`nox sequelize `
+    -Create migration and model files for database by running ORM command
+    `npx sequelize model:generate --name <table_name> --attributes emails:string,password:string`
+
+    -Now migrate the and sync with database by this command
+    `nox sequelize `
 
 ### Encrypt the password
-	-Storing raw password or as plain text is not recommended at all
-	-So we should to use encrypt the password for that we use "bcrypt".
-	`npm i bcrypt` 
-	-Process has written there :- https://www.npmjs.com/package/bcrypt
+
+    -Storing raw password or as plain text is not recommended at all
+    -So we should to use encrypt the password for that we use "bcrypt".
+    `npm i bcrypt`
+    -Process has written there :- https://www.npmjs.com/package/bcrypt
 
 
-	-Best place to encrypt password in model because database gives us something called triggeres which help to execute some set of statement in before or after an event in database.
-	-In sequelize, there are many function https://sequelize.org/docs/v6/other-topics/hooks/
+    -Best place to encrypt password in model because database gives us something called triggeres which help to execute some set of statement in before or after an event in database.
+    -In sequelize, there are many function https://sequelize.org/docs/v6/other-topics/hooks/
 
 ## Environment Setup:
 
 ### Prerequisites:
 
-**Please note: You make sure that all the service working properly before initialize `API Gateway`.
+\*\*Please note: You make sure that all the service working properly before initialize `API Gateway`.
 
 1. Clone the repository:
 
-   ```shell
-   git clone https://github.com/singhvivekkumar/api-gateway.git
-   ```
+    ```shell
+    git clone https://github.com/singhvivekkumar/api-gateway.git
+    ```
 
 2. Move to the backend folder:
 
-   ```shell
-   cd api-gateway
-   ```
+    ```shell
+    cd api-gateway
+    ```
 
 3. Install and set up Docker.
 
-	```shell
-   npm install
-   ```
+    ```shell
+    npm install
+    ```
 
 ### Create a `.env` file in the project's root directory.
 
@@ -81,18 +84,18 @@ npm start
 `GET http://localhost:3005/api/home`
 
 ### Response
+
 {
-  "message": "successfully hitted api gateway"
+"message": "successfully hitted api gateway"
 }
 
 ### Request to signup in airline
 
-POST: `http://localhost:3005/auth/api/v1/signup``
-body: `{
-		email: test@gamil.com,
-		password: 13245768
-	}`
-
+POST: ` http://localhost:3005/auth/api/v1/signup``
+body:  `{
+email: test@gamil.com,
+password: 13245768
+}`
 
 ### Response to signin in airline
 
@@ -103,16 +106,16 @@ body: `{
 
     {
     	"data": {
-			"id": 8,
-			"email": "<EMAIL_ID>",
-			"password": "<ENCRYPTED_PASSWORD>",
-			"updatedAt": "2023-11-24T18:27:28.189Z",
-			"createdAt": "2023-11-24T18:27:28.189Z"
-		},
+    		"id": 8,
+    		"email": "<EMAIL_ID>",
+    		"password": "<ENCRYPTED_PASSWORD>",
+    		"updatedAt": "2023-11-24T18:27:28.189Z",
+    		"createdAt": "2023-11-24T18:27:28.189Z"
+    	},
     	"success": true,
     	"message": "Successfully user signed in website",
     	"err": {}
-	}
+    }
 
 ### Request to signup in airline
 
@@ -135,7 +138,29 @@ body: {
     	"success": true,
     	"message": "Successfully user signed in website",
     	"err": {}
-	}
+    }
+
+### Config AWS to connect RDS
+
+-   Go to aws console and create ec2 instance and rds instance
+-   create security group for their connection in which enable mysql 3306 port number
+
+-   connect ec2 instance(ubuntu) and install following:
+
+```
+	sudo apt-get update
+	sudo apt-get install mysql-server
+	sudo systemctl start mysql
+	sudo systemctl enable mysql
+```
+
+- This command to connect rdb through end point 
+
+``` mysql -h <END_POINT_RDS> -P 3306 -u root -p ```
+
+then enter password:`*******`
+
+- Now you can write and mysql command to access databases.
 
 
 Congratulations! Your backend is now running at http://localhost:3005/.
