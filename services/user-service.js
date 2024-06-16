@@ -11,7 +11,7 @@ class UserService {
 	async createUser(user) {
 		try {
 			const result = await this.userRepository.create(user);
-			const newJWT = this.createToken({email: user.email, password: user.password});
+			const newJWT = this.createToken({email: result.email, password: result.password});
 			return {
 				token: newJWT,
 				user: {
@@ -81,7 +81,7 @@ class UserService {
 				throw {error: "incorrect password"}
 			}
 		} catch (error) {
-			console.log("something went wrong in signin process");
+			console.log("something went wrong during signin process at service layer");
 			throw { error }
 		}
 	}

@@ -7,7 +7,7 @@ class UserRepository {
 			const user = await User.create(data);
 			return user;
 		} catch (error) {
-			console.log("Something went wrong in repository layer")
+			console.log("Something went wrong during create at repository layer")
 			throw {error}
 		}
 	}
@@ -17,7 +17,7 @@ class UserRepository {
 			const user = await User.update();
 			return user;
 		} catch (error) {
-			console.log("Something went wrong in repository layer")
+			console.log("Something went wrong during update at repository layer")
 			throw {error}
 		}
 	}
@@ -29,7 +29,7 @@ class UserRepository {
 			});
 			return user;
 		} catch (error) {
-			console.log("Something went wrong in repository layer")
+			console.log("Something went wrong during get id at repository layer")
 			throw {error}
 		}
 	}
@@ -43,7 +43,7 @@ class UserRepository {
 			});
 			return user;
 		} catch (error) {
-			console.log("Something went wrong in repository layer")
+			console.log("Something went wrong during get email at repository layer")
 			throw {error}
 		}
 	}
@@ -57,7 +57,7 @@ class UserRepository {
 			});
 			return true;
 		} catch (error) {
-			console.log("Something went wrong in repository layer")
+			console.log("Something went wrong during destory at repository layer")
 			throw {error}
 		}
 	}

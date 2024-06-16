@@ -9,7 +9,7 @@
 ### Setup database or sequelize orm
 
     -Install or and setup the mysql db connection by configuration of config file
-    ```npn i sequelize```
+    ```npm i sequelize```
 
     -In config.js file
     ```
@@ -22,7 +22,7 @@
     `npx sequelize model:generate --name <table_name> --attributes emails:string,password:string`
 
     -Now migrate the and sync with database by this command
-    `nox sequelize `
+    `npx sequelize`
 
 ### Encrypt the password
 

@@ -33,7 +33,7 @@ const signIn = async (req, res) => {
 		return res.status(201).json({
 			data: response,
 			success: true,
-			message: "Successfully user signed in website",
+			message: "Successfully user signed at website",
 			err: {}
 		})
 	} catch (error) {
@@ -41,7 +41,7 @@ const signIn = async (req, res) => {
 		return res.status(500).json({
 			data: {},
 			success: false,
-			message: "Something went wrong in signin",
+			message: "Something went wrong during signin",
 			err: error
 		})
 	}

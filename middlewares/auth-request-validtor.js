@@ -3,7 +3,7 @@ const validateEmailPassword = async (req, res, next) => {
 		return res.status(400).json({
 			success: false,
 			data: {},
-			message: "something went wrong in middleware",
+			message: "something went wrong at middleware",
 			error: "Email or password are missing in request"
 		})
 	}
@@ -16,7 +16,7 @@ const validateIsAdminRequest = async (req, res, next) => {
 			success: false,
 			data: {},
 			error: "User id not given",
-			message: "something went wrong in middleware",
+			message: "something went wrong at middleware",
 		})
 	}
 	next();

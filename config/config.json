@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": "1670",
+    "database": "authentication_service_db",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
